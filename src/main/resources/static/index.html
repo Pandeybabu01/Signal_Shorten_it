@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal — URL Shortener</title>
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> Signal</div>
+    <div class="nav">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/swagger-ui.html">API Docs</a>
+      <a href="#" id="authLink">Log in</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">link tracking console</div>
+    <h1>Shorten it. Track every click.</h1>
+    <p class="sub">Paste a long URL, get a short one back instantly. Log in to save links to your dashboard and see click analytics — device, browser, referrer, and trend over time.</p>
+
+    <div class="console">
+      <div class="console-header"><span class="lamp on"></span> new-link</div>
+
+      <form id="shortenForm">
+        <div class="field">
+          <label for="originalUrl">Destination URL</label>
+          <input type="url" id="originalUrl" placeholder="https://example.com/a/very/long/path" required>
+        </div>
+
+        <button type="button" class="advanced-toggle" id="advToggle">+ advanced options (custom alias, expiry, password, click limit)</button>
+
+        <div class="advanced-panel" id="advPanel">
+          <div class="row">
+            <div class="field">
+              <label for="customAlias">Custom alias (optional)</label>
+              <input type="text" id="customAlias" placeholder="my-launch">
+            </div>
+            <div class="field">
+              <label for="title">Title (optional)</label>
+              <input type="text" id="title" placeholder="Product launch link">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="expiresAt">Expires at (optional)</label>
+              <input type="datetime-local" id="expiresAt">
+            </div>
+            <div class="field">
+              <label for="maxClicks">Max clicks (optional)</label>
+              <input type="number" id="maxClicks" min="1" placeholder="e.g. 100">
+            </div>
+          </div>
+          <div class="field">
+            <label for="password">Access password (optional)</label>
+            <input type="password" id="password" placeholder="Require a password before redirecting">
+          </div>
+        </div>
+
+        <button type="submit" class="primary" id="submitBtn">Shorten URL</button>
+      </form>
+
+      <div class="result" id="result">
+        <div><span class="muted">Your short link:</span> <span class="link" id="resultLink"></span></div>
+        <div>
+          <button class="ghost" id="copyBtn">Copy</button>
+          <button class="ghost" id="qrBtn">QR code</button>
+        </div>
+      </div>
+
+      <div class="error-banner" id="errorBanner"></div>
+    </div>
+  </div>
+
+  <!-- Auth panel (shown inline when "Log in" is clicked) -->
+  <div class="panel" id="authPanel" style="display:none;">
+    <div class="panel-title">
+      <span id="authTitle">Log in</span>
+      <button class="advanced-toggle" id="authSwitch">Need an account? Register</button>
+    </div>
+    <form id="authForm">
+      <div class="row">
+        <div class="field" id="usernameField">
+          <label for="authUsername">Username</label>
+          <input type="text" id="authUsername" required>
+        </div>
+        <div class="field" id="emailField" style="display:none;">
+          <label for="authEmail">Email</label>
+          <input type="email" id="authEmail">
+        </div>
+      </div>
+      <div class="field">
+        <label for="authPassword">Password</label>
+        <input type="password" id="authPassword" required>
+      </div>
+      <button type="submit" class="primary">Continue</button>
+    </form>
+    <div class="error-banner" id="authError"></div>
+  </div>
+
+  <footer>
+    <div><a href="/api/legal/privacy-policy">Privacy Policy</a><a href="/api/legal/terms">Terms of Service</a></div>
+    <div>Signal URL Shortener · Spring Boot + MySQL</div>
+  </footer>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

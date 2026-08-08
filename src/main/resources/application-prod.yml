@@ -1,0 +1,23 @@
+spring:
+  jpa:
+    show-sql: false
+  datasource:
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:20}
+
+server:
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework   # trust X-Forwarded-* from reverse proxy / load balancer
+
+logging:
+  level:
+    root: WARN
+    com.urlshortener: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  base-url: ${APP_BASE_URL}   # must be set explicitly in prod, e.g. https://sho.rt

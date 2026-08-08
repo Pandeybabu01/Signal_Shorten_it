@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Signal</title>
+<link rel="stylesheet" href="/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> Signal</div>
+    <div class="nav">
+      <a href="/index.html">New link</a>
+      <a href="/swagger-ui.html">API Docs</a>
+      <a href="#" id="authLink">Log in</a>
+    </div>
+  </div>
+
+  <div class="eyebrow">console / dashboard</div>
+  <h1 style="margin-bottom:28px;">Your links</h1>
+
+  <div id="loggedOutNotice" class="panel" style="display:none;">
+    <div class="panel-title">Log in to see your dashboard</div>
+    <p class="muted">Head back to the <a href="/index.html">home page</a> to log in or create an account. Links created while logged in show up here with full click analytics.</p>
+  </div>
+
+  <div id="dashboardContent" style="display:none;">
+    <div class="panel">
+      <div class="panel-title">
+        All links
+        <button class="ghost" id="refreshBtn">Refresh</button>
+      </div>
+      <table class="board" id="linksTable">
+        <thead>
+          <tr><th>Code</th><th>Destination</th><th>Clicks</th><th>Status</th><th>Created</th><th></th></tr>
+        </thead>
+        <tbody id="linksBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="glyph">·· ·- ·-· - ··</div>
+        No links yet — create one from the home page.
+      </div>
+    </div>
+
+    <div class="panel" id="analyticsPanel" style="display:none;">
+      <div class="panel-title">
+        Analytics for <span class="code-cell" id="selectedCode"></span>
+        <button class="ghost" id="closeAnalytics">Close</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><div class="num" id="statTotal">–</div><div class="label">Total clicks</div></div>
+        <div class="stat"><div class="num" id="statUnique">–</div><div class="label">Unique visitors</div></div>
+        <div class="stat"><div class="num" id="statTop">–</div><div class="label">Top referrer</div></div>
+      </div>
+
+      <div class="row" style="margin-top:20px;">
+        <div class="field" style="flex:2; min-width:320px;">
+          <label>Clicks over time</label>
+          <canvas id="timeChart" height="140"></canvas>
+        </div>
+        <div class="field" style="flex:1; min-width:220px;">
+          <label>Device breakdown</label>
+          <canvas id="deviceChart" height="140"></canvas>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field" style="flex:1; min-width:220px;">
+          <label>Browser</label>
+          <canvas id="browserChart" height="120"></canvas>
+        </div>
+        <div class="field" style="flex:1; min-width:220px;">
+          <label>Top referrers</label>
+          <div id="referrerList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div><a href="/api/legal/privacy-policy">Privacy Policy</a><a href="/api/legal/terms">Terms of Service</a></div>
+    <div>Signal URL Shortener · Spring Boot + MySQL</div>
+  </footer>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
