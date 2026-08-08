@@ -1,0 +1,41 @@
+# Maven / Java
+/target/
+*/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Spring Boot
+/application-*.yml
+!application.yml
+
+# Docker
+*.local
+
+target/
+*.class
+*.log
+.idea/
+*.iml
+.vscode/
+.DS_Store
+.env
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
